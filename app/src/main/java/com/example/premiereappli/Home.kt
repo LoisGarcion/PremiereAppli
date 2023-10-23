@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
@@ -39,12 +40,12 @@ fun CV(windowSizeClass: WindowSizeClass, navController : NavController) {
                 TexteIntro()
                 Spacer(modifier = Modifier.size(20.dp))
                 Contact()
-                BoutonDemarrer()
+                BoutonDemarrer(navController)
             }
         }
         else -> {
             Row(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().padding(top = 60  .dp),
                 Arrangement.SpaceEvenly,
                 Alignment.CenterVertically
             ) {
@@ -52,7 +53,7 @@ fun CV(windowSizeClass: WindowSizeClass, navController : NavController) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    ImageRonde()
+                    ImageRonde(200)
                     TexteIntro()
                 }
                 Column(
@@ -62,7 +63,7 @@ fun CV(windowSizeClass: WindowSizeClass, navController : NavController) {
                 {
                     Contact()
                     Spacer(modifier = Modifier.size(20.dp))
-                    BoutonDemarrer()
+                    BoutonDemarrer(navController)
                 }
             }
         }
@@ -70,13 +71,13 @@ fun CV(windowSizeClass: WindowSizeClass, navController : NavController) {
 }
 
 @Composable
-fun ImageRonde(){
+fun ImageRonde(size : Int = 250){
     Image(
         painter = painterResource(id = R.drawable.sexotik),
         contentDescription = "exotik cv",
         contentScale = ContentScale.Crop,
         modifier = Modifier
-            .size(250.dp)
+            .size(size.dp)
             .clip(CircleShape)
     )
 }
@@ -99,7 +100,12 @@ fun Contact(){
 }
 
 @Composable
-fun BoutonDemarrer() {
-
+fun BoutonDemarrer(navController : NavController) {
+    Button(
+        onClick = { navController.navigate("movieList") },
+        modifier = Modifier.padding(10.dp)
+    ) {
+        Text(text = "Démarrer")
+    }
 }
 

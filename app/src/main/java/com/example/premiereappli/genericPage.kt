@@ -1,5 +1,6 @@
 package com.example.premiereappli
 
+import android.annotation.SuppressLint
 import android.inputmethodservice.Keyboard
 import android.widget.FrameLayout
 import androidx.compose.foundation.Image
@@ -52,10 +53,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun GenericPage(windowSizeClass: WindowSizeClass, navController: NavController, content: @Composable (String) -> Unit, searchBar: Boolean) {
     var text by remember { mutableStateOf("") }
+    var textSearched by remember { mutableStateOf("") }
     var search by remember { mutableStateOf(false) }
    Scaffold(
         topBar = {
@@ -65,8 +68,8 @@ fun GenericPage(windowSizeClass: WindowSizeClass, navController: NavController, 
                     if (searchBar) {
                         DockedSearchBar(
                             query = text,
-                            onQueryChange = { text = it },
-                            onSearch = { search = false },
+                            onQueryChange = {text = it},
+                            onSearch = { search = false; textSearched = it },
                             active = search,
                             onActiveChange = {
                                 search = it
@@ -192,13 +195,8 @@ fun GenericPage(windowSizeClass: WindowSizeClass, navController: NavController, 
                 }
             }
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            content(text)
-        }
-    }
+   )
+   {
+       content(textSearched)
+   }
 }

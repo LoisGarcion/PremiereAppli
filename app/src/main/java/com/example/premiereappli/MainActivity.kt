@@ -69,8 +69,52 @@ class MainActivity : ComponentActivity() {
                         searchBar = true
                     )
                 }
+                composable("movieDetail/{movieid}"){ backStackEntry ->
+                    val movieId = backStackEntry.arguments?.getString("movieid") ?: ""
+                    GenericPage(
+                        windowSizeClass = windowSizeClass,
+                        navController = navController,
+                        content = {
+                            DetailMovie(
+                                navController = navController,
+                                movieId = movieId,
+                                windowSizeClass = windowSizeClass
+                            )
+                        },
+                        searchBar = false
+                    )
+                }
+                composable("serieDetail/{serieid}"){ backStackEntry ->
+                    val serieId = backStackEntry.arguments?.getString("serieid") ?: ""
+                    GenericPage(
+                        windowSizeClass = windowSizeClass,
+                        navController = navController,
+                        content = {
+                            DetailSerie(
+                                navController = navController,
+                                serieId = serieId,
+                                windowSizeClass = windowSizeClass
+                            )
+                        },
+                        searchBar = false
+                    )
+                }
+                composable("actorDetail/{personid}"){ backStackEntry ->
+                    val actorId = backStackEntry.arguments?.getString("personid") ?: ""
+                    GenericPage(
+                        windowSizeClass = windowSizeClass,
+                        navController = navController,
+                        content = {
+                            DetailActor(
+                                navController = navController,
+                                actorId = actorId,
+                                windowSizeClass = windowSizeClass
+                            )
+                        },
+                        searchBar = false
+                    )
+                }
             }
-            navController.navigate("home")
         }
     }
 }

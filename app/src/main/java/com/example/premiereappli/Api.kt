@@ -8,8 +8,8 @@ interface Api {
     @GET("trending/movie/week")
     suspend fun getMovieList(@Query("api_key") apiKey : String): MovieList
 
-    @GET("movie/{movie_id}")
-    suspend fun movieDetails(@Query("api_key") apiKey : String, @Path("id") id: String): Movie
+    @GET("movie/{id}?append_to_response=credits")
+    suspend fun movieDetails(@Path("id") id: String, @Query("api_key") apiKey : String): Movie
 
     @GET("search/movie")
     suspend fun searchMovie(@Query("api_key") apiKey : String, @Query("query") query: String): MovieList
@@ -17,19 +17,19 @@ interface Api {
     @GET("trending/tv/week")
     suspend fun getSerieList(@Query("api_key") apiKey : String): SerieList
 
-    @GET("tv/{tv_id}")
-    suspend fun serieDetails(@Query("api_key") apiKey : String, @Path("id") id: String): Serie
+    @GET("tv/{id}?append_to_response=credits")
+    suspend fun serieDetails(@Path("id") id: String, @Query("api_key") apiKey : String): Serie
 
     @GET("search/tv")
-    suspend fun searchSerie(@Query("api_key") apiKey : String, @Path("id") id: String): SerieList
+    suspend fun searchSerie(@Query("api_key") apiKey : String, @Query("query") query: String): SerieList
 
     @GET("trending/person/week")
     suspend fun getActorList(@Query("api_key") apiKey : String): ActorList
 
-    @GET("person/{person_id}")
-    suspend fun actorDetails(@Query("api_key") apiKey : String, @Path("id") id: String): Actor
+    @GET("person/{id}?append_to_response=credits")
+    suspend fun actorDetails(@Path("id") id: String, @Query("api_key") apiKey : String): Actor
 
     @GET("search/person")
-    suspend fun searchActor(@Query("api_key") apiKey : String, @Path("id") id: String): ActorList
+    suspend fun searchActor(@Query("api_key") apiKey : String, @Query("query") query: String): ActorList
 
 }

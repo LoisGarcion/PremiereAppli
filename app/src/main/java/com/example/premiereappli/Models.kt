@@ -32,9 +32,43 @@ data class Movie(
     val title: String = "",
     val video: Boolean = false,
     val vote_average: Double = 0.0,
-    val vote_count: Int = 0
+    val vote_count: Int = 0,
+    val credits: Credits = Credits()
 )
 
+data class Credits(
+    val cast: List<Cast> = listOf(),
+    val crew: List<Crew> = listOf()
+)
+
+data class Cast(
+    val adult: Boolean,
+    val cast_id: Int,
+    val character: String,
+    val credit_id: String,
+    val gender: Int,
+    val id: Int,
+    val known_for_department: String,
+    val name: String,
+    val order: Int,
+    val original_name: String,
+    val popularity: Double,
+    val profile_path: String
+)
+
+data class Crew(
+    val adult: Boolean,
+    val credit_id: String,
+    val department: String,
+    val gender: Int,
+    val id: Int,
+    val job: String,
+    val known_for_department: String,
+    val name: String,
+    val original_name: String,
+    val popularity: Double,
+    val profile_path: String
+)
 data class Genre(
     val id: Int = 0,
     val name: String = ""
@@ -73,7 +107,7 @@ data class Serie(
     val created_by: List<Any> = listOf(),
     val episode_run_time: List<Int> = listOf(),
     val first_air_date: String = "",
-    val genres: List<Any> = listOf(),
+    val genres: List<Genre> = listOf(),
     val homepage: String = "",
     val id: Int = 0,
     val in_production: Boolean = false,
@@ -99,8 +133,9 @@ data class Serie(
     val tagline: String = "",
     val type: String = "",
     val vote_average: Double = 0.0,
-    val vote_count: Int = 0
-)
+    val vote_count: Int = 0,
+    val credits: Credits = Credits()
+    )
 
 data class Network(
     val id: Int = 0,

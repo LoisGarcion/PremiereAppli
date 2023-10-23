@@ -44,7 +44,7 @@ class MainViewModel : ViewModel() {
 
     fun getMovieDetails(id : String){
         viewModelScope.launch {
-            movie.value = api.movieDetails(apiKey, id)
+            movie.value = api.movieDetails(id,apiKey)
         }
     }
 
@@ -62,7 +62,7 @@ class MainViewModel : ViewModel() {
 
     fun getSerieDetails(id : String){
         viewModelScope.launch {
-            serie.value = api.serieDetails(apiKey, id)
+            serie.value = api.serieDetails(id, apiKey)
         }
     }
 
@@ -80,7 +80,7 @@ class MainViewModel : ViewModel() {
 
     fun getActorDetails(id : String){
         viewModelScope.launch {
-            actor.value = api.actorDetails(apiKey, id)
+            actor.value = api.actorDetails(id, apiKey)
         }
     }
 }
