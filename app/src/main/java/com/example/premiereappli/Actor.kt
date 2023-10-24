@@ -327,7 +327,6 @@ fun DetailActor(windowSizeClass: WindowSizeClass, navController : NavController,
 
 fun castToActor(cast : Cast) : Actor{
     Log.d("test","le profile path : " + cast.profile_path)
-    //APPAREMMENT LE PROFIL PATH DE MON CAST EST NULL
     if(cast.profile_path == null){
         return Actor(cast.adult,cast.gender,cast.id, listOf(),cast.known_for_department, "", cast.name, cast.original_name, cast.popularity, "", "","")
     }
